@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FinishActivity"
+    android:orientation="vertical"
+    android:background="@color/aLittleWhite">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/finishToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/aLittleWhite"
+        android:theme="@style/ToolBarTheme"
+        app:titleTextColor="@color/primaryDark"
+        />
+
+    <TextView
+        android:id="@+id/finishTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GREAT WORK LAD"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/primaryDark"
+        />
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/item_ripple"
+        android:gravity="center">
+
+        <!--Here the ic_action_done image in added in the drawables folders.-->
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_finish" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/finishTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You Have Successfully Finished The WorkOut"
+        android:layout_gravity="center"
+        android:textColor="@color/primaryDark"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/finishBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:padding="10dp"
+        android:text="FINISH"
+        android:backgroundTint="@color/primaryDark"
+        android:textColor="@color/aLittleWhite"/>
+
+</LinearLayout>

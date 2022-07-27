@@ -1,5 +1,6 @@
 package me.phyo.a7minutesworkoutapp
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -147,7 +148,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 if (currentExercise<exerciseList?.size!! - 1){
                     setUpRestTimer()
                 }else{
-                Toast.makeText(this@ExerciseActivity,"Finished All Exercises",Toast.LENGTH_LONG).show()
+                var intent = Intent(this@ExerciseActivity,FinishActivity::class.java)
+                    finish()
+                    startActivity(intent)
             }
             }
 
