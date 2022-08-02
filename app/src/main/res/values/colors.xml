@@ -12,4 +12,7 @@
     <color name="primaryDark">#D90429</color>
     <color name="accent">#8D99AE</color>
     <color name="aLittleWhite">#EDF2F4</color>
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+        <item name="colorPrimary">@color/primaryDark</item>
+    </style>
 </resources>
