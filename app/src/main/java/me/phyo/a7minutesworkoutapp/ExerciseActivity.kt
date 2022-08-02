@@ -1,5 +1,6 @@
 package me.phyo.a7minutesworkoutapp
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.phyo.a7minutesworkoutapp.databinding.ActivityExerciseBinding
+import me.phyo.a7minutesworkoutapp.databinding.BackButtonCustomDialogBinding
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -42,7 +44,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         binding?.exerciseToolBar?.setNavigationOnClickListener {
-            onBackPressed()
+            showBackButtonCustomDialog()
         }
 
         tts = TextToSpeech(this,this)
@@ -155,6 +157,26 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
 
         }.start()
+    }
+
+    override fun onBackPressed() {
+        showBackButtonCustomDialog()
+    }
+
+    private fun showBackButtonCustomDialog(){
+        var dialog  = Dialog(this@ExerciseActivity)
+        var dialogBinding : BackButtonCustomDialogBinding = BackButtonCustomDialogBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialogBinding.dialogYes.setOnClickListener {
+            this@ExerciseActivity.finish()
+            dialog.dismiss()
+        }
+        dialogBinding.dialogNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     override fun onDestroy() {
