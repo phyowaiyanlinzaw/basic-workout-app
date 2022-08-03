@@ -11,6 +11,9 @@
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/item_circular_red.xml" value="0.242" />
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/item_circular_selected.xml" value="0.242" />
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/item_ripple.xml" value="0.242" />
+        <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/radio_group_tab_background.xml" value="0.242" />
+        <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/units_tabs_selector.xml" value="0.2" />
+        <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/drawable/units_text_color_selector.xml" value="0.242" />
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/layout/activity_bmi.xml" value="0.24375" />
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/layout/activity_exercise.xml" value="0.29270833333333335" />
         <entry key="..\:/AndroidProjects/2022/7MinutesWorkOutApp/app/src/main/res/layout/activity_finish.xml" value="0.25" />

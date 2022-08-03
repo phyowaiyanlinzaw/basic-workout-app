@@ -15,20 +15,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/primaryDark"/>
 
+    <RadioGroup
+        android:id="@+id/radioGroupBMI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bmiToolBar"
+        android:background="@drawable/radio_group_tab_background"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/myanmarBMIWay"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:background="@drawable/units_tabs_selector"
+            android:textColor="@drawable/units_text_color_selector"
+            android:text="မြန်မာလို တွက်ခြင်း"
+            android:button="@null"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/westernBMIWay"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:checked="false"
+            android:background="@drawable/units_tabs_selector"
+            android:textColor="@drawable/units_text_color_selector"
+            android:text="အနောက်တိုင်းလို တွက်ခြင်း"
+            android:button="@null"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </RadioGroup>
+
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilMetricUnitWeight"
-        android:layout_below="@id/bmiToolBar"
+        android:id="@+id/tilMyanmarUnitWeight"
+        android:layout_below="@id/radioGroupBMI"
         app:boxStrokeColor="@color/primary"
         app:hintTextColor="@color/primary"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMetricUnitWeight"
+            android:id="@+id/etMyanmarUnitWeight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -41,21 +80,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/tilMetricUnitWeight">
+        android:layout_below="@id/tilMyanmarUnitWeight"
+        android:layout_margin="20dp">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilMetricUnitHeightFeet"
+        android:id="@+id/tilMyanmarUnitHeightFeet"
         app:boxStrokeColor="@color/primary"
         app:hintTextColor="@color/primary"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_weight="1"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMetricUnitHeightFeet"
+            android:id="@+id/etMyanmarUnitHeightFeet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -64,18 +104,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilMetricUnitHeightInches"
+        android:id="@+id/tilMyanmarUnitHeightInches"
         app:boxStrokeColor="@color/primary"
         app:hintTextColor="@color/primary"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
         android:layout_weight="1"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMetricUnitHeightInches"
+            android:id="@+id/etMyanmarUnitHeightInches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
@@ -84,6 +124,50 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilWesternUnitWeight"
+        android:layout_below="@id/radioGroupBMI"
+        app:boxStrokeColor="@color/primary"
+        app:hintTextColor="@color/primary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etWesternUnitWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint=" Weight (kg) "
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilWesternUnitHeight"
+        android:layout_below="@id/tilWesternUnitWeight"
+        app:boxStrokeColor="@color/primary"
+        app:hintTextColor="@color/primary"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etWesternUnitHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint=" Height (cm) "
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:padding="10dp"

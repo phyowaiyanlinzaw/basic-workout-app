@@ -9,6 +9,14 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 class BMIActivity : AppCompatActivity() {
+
+    companion object{
+        const val Myanmar_BMI_VIEW = "MYANMAR_BMI_VIEW"
+        const val WESTERN_BMI_VIEW = "WESTERN_BMI_VIEW"
+    }
+
+    private var currentVisibleView: String = Myanmar_BMI_VIEW
+
     private var binding : ActivityBmiBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,17 +33,52 @@ class BMIActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding?.btnCalculateUnits?.setOnClickListener {
-            if (validateBMIResults()){
-                var weightValue = binding?.etMetricUnitWeight?.text.toString().toFloat()
-                var heightValue = (binding?.etMetricUnitHeightFeet?.text.toString().toFloat() * 12) + binding?.etMetricUnitHeightInches?.text.toString().toFloat()
-                var bmi = (weightValue*703)/(heightValue*heightValue)
-                displayBMI(bmi)
-            } else {
-                Toast.makeText(this@BMIActivity, "Please enter valid values.", Toast.LENGTH_SHORT)
-                    .show()
+        showMyanmarBMIView()
+
+        binding?.radioGroupBMI?.setOnCheckedChangeListener{_,radioID:Int ->
+            if (radioID==R.id.westernBMIWay){
+                showWesternBMIView()
+            }else{
+                showMyanmarBMIView()
             }
         }
+
+        binding?.btnCalculateUnits?.setOnClickListener {
+            calculateBMI()
+        }
+
+    }
+
+    private fun showMyanmarBMIView(){
+        currentVisibleView = Myanmar_BMI_VIEW
+
+        binding?.tilWesternUnitHeight?.visibility = View.INVISIBLE
+        binding?.tilWesternUnitWeight?.visibility = View.INVISIBLE
+        binding?.tilMyanmarUnitWeight?.visibility = View.VISIBLE
+        binding?.tilMyanmarUnitHeightFeet?.visibility = View.VISIBLE
+        binding?.tilMyanmarUnitHeightInches?.visibility = View.VISIBLE
+
+        binding?.etMyanmarUnitHeightFeet?.text!!.clear()
+        binding?.etMyanmarUnitHeightInches?.text!!.clear()
+        binding?.etMyanmarUnitWeight?.text!!.clear()
+
+        binding?.llDisplayBMIResult?.visibility = View.INVISIBLE
+
+    }
+
+    private fun showWesternBMIView(){
+        currentVisibleView = WESTERN_BMI_VIEW
+
+        binding?.tilWesternUnitHeight?.visibility = View.VISIBLE
+        binding?.tilWesternUnitWeight?.visibility = View.VISIBLE
+        binding?.tilMyanmarUnitWeight?.visibility = View.INVISIBLE
+        binding?.tilMyanmarUnitHeightFeet?.visibility = View.INVISIBLE
+        binding?.tilMyanmarUnitHeightInches?.visibility = View.INVISIBLE
+
+        binding?.etWesternUnitHeight?.text!!.clear()
+        binding?.etWesternUnitWeight?.text!!.clear()
+
+        binding?.llDisplayBMIResult?.visibility = View.INVISIBLE
 
     }
 
@@ -86,17 +129,54 @@ class BMIActivity : AppCompatActivity() {
         binding?.tvBMIDescription?.text = bmiDescription // Description is set to TextView
     }
 
-    private fun validateBMIResults():Boolean{
+    private fun validateMyanmarBMI():Boolean{
         var validator = true
 
-        if(binding?.etMetricUnitWeight?.text.toString().isEmpty()){
+        if(binding?.etMyanmarUnitWeight?.text.toString().isEmpty()){
             validator = false
-        }else if (binding?.etMetricUnitHeightFeet?.text.toString().isEmpty()){
+        }else if (binding?.etMyanmarUnitHeightFeet?.text.toString().isEmpty()){
             validator = false
-        }else if (binding?.etMetricUnitHeightInches?.text.toString().isEmpty()){
+        }else if (binding?.etMyanmarUnitHeightInches?.text.toString().isEmpty()){
             validator = false
         }
 
         return validator
+    }
+
+    private fun validateWesternBMI():Boolean{
+        var validator = true
+
+        if(binding?.etWesternUnitWeight?.text.toString().isEmpty()){
+            validator = false
+        }else if (binding?.etWesternUnitHeight?.text.toString().isEmpty()){
+            validator = false
+        }
+
+        return validator
+    }
+
+    private fun calculateBMI() {
+        if (currentVisibleView== Myanmar_BMI_VIEW) {
+            if (validateMyanmarBMI()) {
+                var weightValue = binding?.etMyanmarUnitWeight?.text.toString().toFloat()
+                var heightValue = (binding?.etMyanmarUnitHeightFeet?.text.toString()
+                    .toFloat() * 12) + binding?.etMyanmarUnitHeightInches?.text.toString().toFloat()
+                var bmi = (weightValue * 703) / (heightValue * heightValue)
+                displayBMI(bmi)
+            } else {
+                Toast.makeText(this@BMIActivity, "Please enter valid values.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }else{
+            if (validateWesternBMI()){
+                var weightValue = binding?.etWesternUnitWeight?.text.toString().toFloat()
+                var heightValue = binding?.etWesternUnitHeight?.text.toString().toFloat()/100
+                var bmi = weightValue / (heightValue*heightValue)
+                displayBMI(bmi)
+            }else {
+                Toast.makeText(this@BMIActivity, "Please enter valid values.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 }
